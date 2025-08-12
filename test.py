@@ -50,7 +50,7 @@ class TestCheckFalseCases(unittest.TestCase):
         self.assertFalse(check(1))
         self.assertFalse(check(2))
         self.assertFalse(check(57))
-'''
+
 class TestDivide(unittest.TestCase):
    def test_divide_success(self):
        self.assertEqual(divide(10, 2), 5)
@@ -59,8 +59,36 @@ class TestDivide(unittest.TestCase):
 
    def test_divide_by_zero(self):
        self.assertRaises(ValueError, divide, 6, 0)
+'''
 
+
+class TestRemainder(unittest.TestCase):
+    def test_remainder_normal_cases(self):
+        # Проверка обычных случаев
+        self.assertEqual(remainder(10, 3), 1)
+        self.assertEqual(remainder(15, 4), 3)
+        self.assertEqual(remainder(20, 7), 6)
+        self.assertEqual(remainder(0, 5), 0)  # 0 делится на любое число
+
+    def test_remainder_negative_numbers(self):
+        # Проверка отрицательных чисел
+        self.assertEqual(remainder(-10, 3), 2)  # -10 = (-4)*3 + 2
+        self.assertEqual(remainder(10, -3), -2)  # 10 = (-4)*(-3) - 2
+        self.assertEqual(remainder(-10, -3), -1)  # -10 = (3)*(-3) - 1
+
+    def test_remainder_by_zero(self):
+        # Проверка деления на ноль с помощью assertRaises
+        with self.assertRaises(ValueError):
+            remainder(10, 0)
+        with self.assertRaises(ValueError):
+            remainder(0, 0)
+
+    def test_remainder_edge_cases(self):
+        # Проверка крайних случаев
+        self.assertEqual(remainder(1, 1), 0)
+        self.assertEqual(remainder(1, 2), 1)
+        self.assertEqual(remainder(2, 1), 0)
 
 
 if __name__ == '__main__':
-		unittest.main()
+    unittest.main()
